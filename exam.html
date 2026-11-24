@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SmartPrep AI | Examination</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 30px 20px;
+    background: #192f34;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Main Container */
+
+.container {
+    max-width: 950px;
+    margin: 25px auto;
+    padding: 35px;
+    background: #203a40;
+    border: 1px solid #36545a;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* Headings */
+
+h1 {
+    color: #48c78e;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+/* Exam Information */
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px 0;
+    padding: 18px;
+    background: #172f34;
+    border: 1px solid #36545a;
+    border-radius: 12px;
+    color: #b6c5c5;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#timer {
+    color: #48c78e;
+    font-weight: 800;
+}
+
+/* Question */
+
+.question {
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 30px 0 22px;
+    color: #ffffff;
+}
+
+/* Options */
+
+.option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 17px 20px;
+    margin: 13px 0;
+    background: #172f34;
+    color: #e2eeee;
+    border: 1px solid #456168;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: inherit;
+    transition: 0.25s;
+}
+
+.option:hover {
+    border-color: #48c78e;
+    background: #25474a;
+    transform: translateY(-2px);
+}
+
+.option.selected {
+    background: #075c3b;
+    border: 1px solid #48c78e;
+    color: #ffffff;
+}
+
+/* Buttons */
+
+button {
+    padding: 13px 22px;
+    margin: 15px 8px 0 0;
+    background: #079653;
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    transition: 0.25s;
+}
+
+button:hover {
+    background: #087c48;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Progress Bar */
+
+.progress-track {
+    width: 100%;
+    height: 12px;
+    background: #36545a;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 18px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #079653, #48c78e);
+    border-radius: 20px;
+    transition: width 0.5s;
+}
+
+/* Result Section */
+
+.hidden {
+    display: none;
+}
+
+.result-card {
+    background: #172f34;
+    border: 1px solid #36545a;
+    padding: 25px;
+    border-radius: 13px;
+    margin: 22px 0;
+    line-height: 2;
+}
+
+.result-card p {
+    color: #c5d5d5;
+    font-size: 15px;
+}
+
+.result-card h2 {
+    color: #48c78e;
+    margin-bottom: 15px;
+}
+
+/* Chart */
+
+.chart-container {
+    max-width: 550px;
+    height: 300px;
+    margin: 30px auto;
+    padding: 15px;
+    background: #172f34;
+    border: 1px solid #36545a;
+    border-radius: 12px;
+}
+
+/* Result Subject */
+
+#resultSubject {
+    color: #b6c5c5;
+    margin: 12px 0;
+}
+
+/* Responsive Design */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        padding: 20px;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .question {
+        font-size: 18px;
+    }
+
+    .info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    button {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .chart-container {
+        height: 260px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Examination Section -->
+
+    <div id="examArea">
+
+        <h1>
+            <i class="fas fa-graduation-cap"></i>
+            SmartPrep AI Examination
+        </h1>
+
+        <p style="color:#b6c5c5; margin-top:8px;">
+            Test your knowledge and track your learning progress.
+        </p>
+
+        <div class="info">
+
+            <span id="subjectName"></span>
+
+            <span id="questionNumber"></span>
+
+            <span id="timer">
+                <i class="fas fa-clock"></i> Time: 00:00
+            </span>
+
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-fill" id="examProgress"></div>
+        </div>
+
+        <h2 id="questionText" class="question">
+            Loading questions...
+        </h2>
+
+        <div id="optionsContainer"></div>
+
+        <div>
+
+            <button id="prevBtn" onclick="previousQuestion()">
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+
+            <button id="nextBtn" onclick="nextQuestion()">
+                Next <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <button onclick="submitExam()">
+                <i class="fas fa-paper-plane"></i> Submit Exam
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Result Section -->
+
+    <div id="resultArea" class="hidden">
+
+        <h1>
+            <i class="fas fa-chart-line"></i>
+            Examination Result
+        </h1>
+
+        <p id="resultSubject"></p>
+
+        <div class="result-card">
+
+            <h2 id="scoreText"></h2>
+
+            <p id="correctText"></p>
+
+            <p id="wrongText"></p>
+
+            <p id="unansweredText"></p>
+
+            <p id="accuracyText"></p>
+
+            <p id="levelText"></p>
+
+        </div>
+
+        <h2>Overall Performance</h2>
+
+        <div class="progress-track">
+            <div class="progress-fill" id="scoreProgress"></div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="resultChart"></canvas>
+        </div>
+
+        <div class="result-card">
+
+            <h2>
+                <i class="fas fa-lightbulb"></i>
+                Performance Analysis
+            </h2>
+
+            <p id="analysisText"></p>
+
+        </div>
+
+        <button onclick="downloadPDF()">
+            <i class="fas fa-file-pdf"></i>
+            Download PDF Scorecard
+        </button>
+
+        <button onclick="window.location.href='dashboard.html'">
+            <i class="fas fa-home"></i>
+            Back to Dashboard
+        </button>
+
+    </div>
+
+</div>
+
+<script src="js/exam.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="js/exam.js"></script>
+
+</body>
+</html>

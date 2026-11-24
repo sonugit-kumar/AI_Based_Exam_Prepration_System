@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | SmartPrep AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/app.js" defer></script>
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+    <style>
+
+/* GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.dashboard-body {
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: #192f34;
+    color: #ffffff;
+}
+
+/* HEADER */
+
+.dashboard-header {
+    height: 75px;
+    background: #14272c;
+    border-bottom: 1px solid #36545a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8%;
+}
+
+/* LOGO */
+
+.logo {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.logo i {
+    color: #48c78e;
+    margin-right: 7px;
+}
+
+.logo span {
+    color: #48c78e;
+}
+
+/* NAVIGATION */
+
+.dashboard-header nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.dashboard-header nav a {
+    color: #c3d0d0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.dashboard-header nav a:hover {
+    color: #48c78e;
+}
+
+/* LOGOUT BUTTON */
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #754343;
+    color: #ff8585;
+    padding: 10px 19px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #a83232;
+    color: #ffffff;
+}
+
+/* PROFILE CONTAINER */
+
+.profile-container {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 45px 20px;
+}
+
+/* PROFILE CARD */
+
+.profile-card {
+    width: 100%;
+    max-width: 470px;
+    background: #203a40;
+    border: 1px solid #36545a;
+    border-radius: 16px;
+    padding: 38px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.profile-card:hover {
+    border-color: #48c78e;
+}
+
+/* BADGE */
+
+.badge {
+    display: inline-block;
+    background: rgba(72, 199, 142, 0.13);
+    color: #48c78e;
+    border: 1px solid rgba(72, 199, 142, 0.3);
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+/* PROFILE IMAGE */
+
+.profile-large {
+    display: block;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #48c78e;
+    margin: 0 auto 20px;
+    background: #172f34;
+    box-shadow: 0 0 20px rgba(72, 199, 142, 0.15);
+}
+
+/* PROFILE DETAILS */
+
+.profile-card h2 {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+.profile-card > p {
+    color: #b6c5c5;
+    font-size: 13px;
+    margin-bottom: 30px;
+    word-break: break-word;
+}
+
+/* PROFILE FORM */
+
+.profile-form {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.profile-form label {
+    display: block;
+    color: #dce7e7;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.profile-form input {
+    width: 100%;
+    padding: 14px;
+    background: #172f34;
+    border: 1px solid #456168;
+    border-radius: 7px;
+    color: #ffffff;
+    font-size: 13px;
+    margin-bottom: 23px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.profile-form input:focus {
+    border-color: #48c78e;
+    box-shadow: 0 0 0 3px rgba(72, 199, 142, 0.12);
+}
+
+/* FILE INPUT */
+
+.profile-form input[type="file"] {
+    padding: 11px;
+    cursor: pointer;
+}
+
+.profile-form input[type="file"]::file-selector-button {
+    background: #079653;
+    color: white;
+    border: none;
+    padding: 9px 13px;
+    border-radius: 5px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+/* SAVE BUTTON */
+
+.btn-primary {
+    width: 100%;
+    background: #079653;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #087d48;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(7, 150, 83, 0.2);
+}
+
+.full-btn {
+    width: 100%;
+}
+
+/* MESSAGE */
+
+.message {
+    color: #48c78e;
+    font-size: 13px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 600px) {
+
+    .dashboard-header {
+        padding: 0 5%;
+        height: 70px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .dashboard-header nav {
+        gap: 13px;
+    }
+
+    .dashboard-header nav a {
+        font-size: 12px;
+    }
+
+    .logout-btn {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .profile-container {
+        padding: 30px 15px;
+    }
+
+    .profile-card {
+        padding: 30px 22px;
+    }
+
+    .profile-card h2 {
+        font-size: 21px;
+    }
+
+}
+
+    </style>
+
+</head>
+
+<body class="dashboard-body">
+
+<!-- HEADER -->
+
+<header class="dashboard-header">
+
+    <a href="dashboard.html" class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        SmartPrep<span> AI</span>
+    </a>
+
+    <nav>
+
+        <a href="dashboard.html">
+            <i class="fas fa-chart-pie"></i>
+            Dashboard
+        </a>
+
+        <button onclick="logout()" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- PROFILE SECTION -->
+
+<main class="profile-container">
+
+    <div class="profile-card">
+
+        <span class="badge">
+            <i class="fas fa-user-graduate"></i>
+            STUDENT PROFILE
+        </span>
+
+        <img
+            id="profileImage"
+            class="profile-large"
+            src=""
+            alt="Profile Photo"
+        >
+
+        <h2 id="profileName">Student Name</h2>
+
+        <p id="profileEmail">student@email.com</p>
+
+
+        <!-- PROFILE FORM -->
+
+        <div class="profile-form">
+
+            <label for="updateName">
+                <i class="fas fa-user"></i>
+                Update Name
+            </label>
+
+            <input
+                type="text"
+                id="updateName"
+                placeholder="Enter your new name"
+            >
+
+
+            <label for="updatePhoto">
+                <i class="fas fa-camera"></i>
+                Update Profile Photo
+            </label>
+
+            <input
+                type="file"
+                id="updatePhoto"
+                accept="image/*"
+            >
+
+
+            <button
+                class="btn btn-primary full-btn"
+                onclick="updateProfile()"
+            >
+                <i class="fas fa-save"></i>
+                Save Changes
+            </button>
+
+            <p id="profileMessage" class="message"></p>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SmartPrep AI | AI-Based Exam Preparation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#ffffff;
+    color:#172b35;
+}
+
+/* NAVBAR */
+
+header{
+    background:#172f34;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    position:relative;
+    z-index:10;
+}
+
+.navbar{
+    width:90%;
+    max-width:1250px;
+    height:75px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:800;
+    color:white;
+}
+
+.logo i{
+    color:#48c78e;
+    margin-right:7px;
+}
+
+.logo span{
+    color:#48c78e;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#d6e1e1;
+    font-size:13px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#48c78e;
+}
+
+.nav-buttons{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.login-btn{
+    text-decoration:none;
+    color:white;
+    border:1px solid #50686b;
+    padding:10px 18px;
+    border-radius:6px;
+    font-size:13px;
+}
+
+.start-btn{
+    background:#079653;
+    color:white;
+    text-decoration:none;
+    padding:11px 19px;
+    border-radius:6px;
+    font-size:13px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.start-btn:hover{
+    background:#087d48;
+}
+
+.menu-btn{
+    display:none;
+    color:white;
+    font-size:23px;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    min-height:490px;
+    position:relative;
+    background:#192f34;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:75px 20px 115px;
+    isolation:isolate;
+}
+
+.hero-content{
+    max-width:750px;
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:46px;
+    line-height:1.15;
+    color:white;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#62d69d;
+}
+
+.hero p{
+    color:#c3d0d0;
+    font-size:15px;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.badges{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.badge{
+    background:rgba(255,255,255,.10);
+    color:#dce7e7;
+    border-radius:25px;
+    padding:8px 14px;
+    font-size:11px;
+}
+
+.badge i{
+    color:#49cf91;
+    margin-right:5px;
+}
+
+.hero-button{
+    display:inline-block;
+    background:#079653;
+    color:white;
+    padding:14px 28px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    border-radius:6px;
+    transition:.3s;
+}
+
+.hero-button:hover{
+    background:#087d48;
+    transform:translateY(-3px);
+}
+
+/* ABSTRACT CIRCLES */
+
+.shape{
+    position:absolute;
+    z-index:1;
+    pointer-events:none;
+}
+
+.shape-one{
+    width:390px;
+    height:390px;
+    background:#923c36;
+    border-radius:50%;
+    left:-70px;
+    top:-80px;
+    opacity:.95;
+}
+
+.shape-two{
+    width:170px;
+    height:170px;
+    background:#a33358;
+    border-radius:50%;
+    right:5%;
+    top:-25px;
+}
+
+.shape-three{
+    width:140px;
+    height:140px;
+    background:#a32163;
+    border-radius:50%;
+    right:8%;
+    bottom:45px;
+}
+
+.shape-four{
+    width:170px;
+    height:170px;
+    background:#c04c25;
+    border-radius:50%;
+    left:25%;
+    top:-105px;
+    opacity:.9;
+}
+
+/* CURVED BOTTOM */
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:120%;
+    height:100px;
+    bottom:-65px;
+    left:-10%;
+    background:white;
+    border-radius:50% 50% 0 0;
+    z-index:3;
+}
+
+/* TRUSTED SECTION */
+
+.trusted{
+    padding:55px 20px 65px;
+    text-align:center;
+    background:white;
+}
+
+.trusted h4{
+    font-size:12px;
+    color:#66777b;
+    font-weight:600;
+    letter-spacing:1.3px;
+    margin-bottom:30px;
+}
+
+.trust-items{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:65px;
+    flex-wrap:wrap;
+}
+
+.trust-items div{
+    color:#839194;
+    font-size:16px;
+    font-weight:700;
+}
+
+/* FEATURES */
+
+.section{
+    padding:85px 8%;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-heading small{
+    color:#079653;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.section-heading h2{
+    font-size:34px;
+    color:#172f34;
+    margin:12px 0;
+}
+
+.section-heading p{
+    font-size:14px;
+    color:#718087;
+    line-height:1.8;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.feature-card{
+    padding:30px;
+    background:#f5f8f7;
+    border:1px solid #e5ece9;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 12px 30px rgba(0,0,0,.07);
+}
+
+.feature-icon{
+    width:55px;
+    height:55px;
+    background:#dff5e9;
+    color:#079653;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    margin-bottom:20px;
+}
+
+.feature-card h3{
+    font-size:17px;
+    color:#172f34;
+    margin-bottom:12px;
+}
+
+.feature-card p{
+    color:#728087;
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* SUBJECTS */
+
+.subjects{
+    background:#f4f8f6;
+}
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.subject-card{
+    background:white;
+    padding:23px;
+    border:1px solid #e5ece9;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    transition:.3s;
+}
+
+.subject-card:hover{
+    border-color:#079653;
+    transform:translateY(-4px);
+}
+
+.subject-card i{
+    color:#079653;
+    font-size:25px;
+}
+
+.subject-card h3{
+    font-size:14px;
+    color:#172f34;
+}
+
+.subject-card span{
+    color:#89969a;
+    font-size:11px;
+}
+
+/* HOW IT WORKS */
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    text-align:center;
+}
+
+.step-number{
+    width:55px;
+    height:55px;
+    background:#dff5e9;
+    color:#079653;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    margin:0 auto 20px;
+}
+
+.step h3{
+    color:#172f34;
+    font-size:17px;
+    margin-bottom:10px;
+}
+
+.step p{
+    color:#728087;
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* CTA */
+
+.cta{
+    background:#192f34;
+    padding:65px 25px;
+    text-align:center;
+    border-radius:14px;
+}
+
+.cta h2{
+    color:white;
+    font-size:34px;
+    margin-bottom:15px;
+}
+
+.cta p{
+    color:#c3d0d0;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#14272c;
+    padding:50px 8% 20px;
+    color:white;
+}
+
+.footer-content{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:35px;
+}
+
+.footer-content p{
+    color:#aebebe;
+    font-size:13px;
+    line-height:1.8;
+    margin-top:15px;
+    max-width:350px;
+}
+
+.footer-links h3{
+    font-size:15px;
+    margin-bottom:18px;
+}
+
+.footer-links a{
+    display:block;
+    color:#b6c5c5;
+    font-size:13px;
+    margin-bottom:13px;
+    text-decoration:none;
+}
+
+.footer-links a:hover{
+    color:#48c78e;
+}
+
+.footer-bottom{
+    border-top:1px solid #34494c;
+    padding-top:20px;
+    text-align:center;
+    color:#91a3a4;
+    font-size:12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .subject-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .feature-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    .navbar{
+        height:70px;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        padding:25px;
+        background:#172f34;
+        flex-direction:column;
+        gap:22px;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .nav-buttons{
+        display:none;
+    }
+
+    .hero{
+        padding:75px 20px 120px;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .shape-one{
+        width:230px;
+        height:230px;
+        left:-120px;
+    }
+
+    .shape-two{
+        width:100px;
+        height:100px;
+        right:-30px;
+    }
+
+    .shape-three{
+        width:90px;
+        height:90px;
+        right:-15px;
+    }
+
+    .shape-four{
+        display:none;
+    }
+
+    .feature-grid,
+    .steps,
+    .footer-content{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:65px 6%;
+    }
+
+    .section-heading h2{
+        font-size:27px;
+    }
+
+    .cta h2{
+        font-size:27px;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .subject-grid{
+        grid-template-columns:1fr;
+    }
+
+    .trust-items{
+        gap:25px;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+
+<div class="navbar">
+
+    <a href="index.html" class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        SmartPrep<span> AI</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#subjects">Subjects</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+
+    <div class="nav-buttons">
+        <a href="login.html" class="login-btn">Log in</a>
+        <a href="register.html" class="start-btn">Get Started</a>
+    </div>
+
+    <i class="fas fa-bars menu-btn" onclick="toggleMenu()"></i>
+
+</div>
+
+</header>
+
+
+<!-- HERO SECTION -->
+
+<section class="hero" id="home">
+
+    <div class="shape shape-one"></div>
+    <div class="shape shape-two"></div>
+    <div class="shape shape-three"></div>
+    <div class="shape shape-four"></div>
+
+    <div class="hero-content">
+
+        <h1>
+            AI-Powered Exam Preparation<br>
+            Platform for <span>Smarter Learning</span>
+        </h1>
+
+        <p>
+            Prepare for exams with intelligent question practice,
+            adaptive difficulty and personalized performance analysis.
+            Learn, practice and improve with SmartPrep AI.
+        </p>
+
+        <div class="badges">
+
+            <div class="badge">
+                <i class="fas fa-check-circle"></i>
+                Smart Question Practice
+            </div>
+
+            <div class="badge">
+                <i class="fas fa-check-circle"></i>
+                Adaptive Learning
+            </div>
+
+            <div class="badge">
+                <i class="fas fa-check-circle"></i>
+                Performance Tracking
+            </div>
+
+        </div>
+
+        <a href="register.html" class="hero-button">
+            Start Your Preparation
+            <i class="fas fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- TRUSTED / HIGHLIGHTS -->
+
+<section class="trusted">
+
+    <h4>YOUR COMPLETE EXAM PREPARATION PARTNER</h4>
+
+    <div class="trust-items">
+
+        <div><i class="fas fa-book"></i> Study Materials</div>
+
+        <div><i class="fas fa-brain"></i> Smart Practice</div>
+
+        <div><i class="fas fa-chart-line"></i> Progress Tracking</div>
+
+        <div><i class="fas fa-file-pdf"></i> PDF Scorecard</div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="section" id="features">
+
+    <div class="section-heading">
+
+        <small>SMART LEARNING FEATURES</small>
+
+        <h2>Everything You Need to Prepare Better</h2>
+
+        <p>
+            Make your examination preparation more effective
+            with intelligent learning tools.
+        </p>
+
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+
+            <h3>Smart Question Practice</h3>
+
+            <p>
+                Practice subject-wise and topic-wise questions
+                according to your preparation needs.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-sliders"></i>
+            </div>
+
+            <h3>Adaptive Difficulty</h3>
+
+            <p>
+                Adjust your examination difficulty according
+                to your performance.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+
+            <h3>Performance Analysis</h3>
+
+            <p>
+                Analyze your accuracy, scores and
+                strong and weak areas.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-stopwatch"></i>
+            </div>
+
+            <h3>Timed Examination</h3>
+
+            <p>
+                Attempt timed tests and improve your
+                examination time management.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+
+            <h3>PDF Scorecard</h3>
+
+            <p>
+                Download your examination results
+                and performance reports.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-history"></i>
+            </div>
+
+            <h3>Exam History</h3>
+
+            <p>
+                Review your previous examinations
+                and monitor your progress.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SUBJECTS -->
+
+<section class="section subjects" id="subjects">
+
+    <div class="section-heading">
+
+        <small>EXPLORE YOUR SUBJECTS</small>
+
+        <h2>Prepare Across Multiple Subjects</h2>
+
+        <p>
+            Choose your subject and start strengthening
+            your knowledge.
+        </p>
+
+    </div>
+
+    <div class="subject-grid">
+
+        <div class="subject-card">
+            <i class="fab fa-python"></i>
+            <div>
+                <h3>Python</h3>
+                <span>Programming</span>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <i class="fab fa-java"></i>
+            <div>
+                <h3>Java</h3>
+                <span>Programming</span>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <i class="fas fa-database"></i>
+            <div>
+                <h3>DBMS</h3>
+                <span>Database Management</span>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <i class="fas fa-brain"></i>
+            <div>
+                <h3>Machine Learning</h3>
+                <span>Artificial Intelligence</span>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <i class="fas fa-code"></i>
+            <div>
+                <h3>Data Structures</h3>
+                <span>Problem Solving</span>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <i class="fas fa-desktop"></i>
+            <div>
+                <h3>Operating System</h3>
+                <span>Computer Science</span>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <i class="fas fa-network-wired"></i>
+            <div>
+                <h3>Computer Networks</h3>
+                <span>Networking</span>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <i class="fas fa-calculator"></i>
+            <div>
+                <h3>Aptitude</h3>
+                <span>Logical Reasoning</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="section" id="how">
+
+    <div class="section-heading">
+
+        <small>GET STARTED</small>
+
+        <h2>How SmartPrep AI Works</h2>
+
+        <p>
+            Begin your exam preparation in three simple steps.
+        </p>
+
+    </div>
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">01</div>
+
+            <h3>Create Your Account</h3>
+
+            <p>
+                Register on SmartPrep AI and create your
+                personal student profile.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">02</div>
+
+            <h3>Select Your Examination</h3>
+
+            <p>
+                Choose your subject, topic, question count
+                and difficulty level.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">03</div>
+
+            <h3>Practice and Improve</h3>
+
+            <p>
+                Attempt examinations, analyze your results
+                and improve your performance.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="section" id="about">
+
+    <div class="cta">
+
+        <h2>Ready to Prepare Smarter?</h2>
+
+        <p>
+            Start your learning journey with SmartPrep AI
+            and take your exam preparation to the next level.
+        </p>
+
+        <a href="register.html" class="hero-button">
+            Create Your Free Account
+            <i class="fas fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                SmartPrep<span> AI</span>
+            </a>
+
+            <p>
+                SmartPrep AI is an intelligent exam preparation
+                platform designed to make learning easier,
+                smarter and more effective.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#subjects">Subjects</a>
+            <a href="#how">How It Works</a>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h3>Account</h3>
+
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+            <a href="#about">About Us</a>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        © 2026 SmartPrep AI. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function toggleMenu(){
+
+    document.getElementById("navLinks").classList.toggle("active");
+
+}
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        document.getElementById("navLinks").classList.remove("active");
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
